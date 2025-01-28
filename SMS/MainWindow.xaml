@@ -1,0 +1,1163 @@
+﻿<Window x:Class="SMS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SMS"
+        mc:Ignorable="d"
+        Title="School Management System" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Loaded="on_load" Icon="sms.ICO">
+    <Window.Background>
+        <ImageBrush ImageSource="pics/new design.png"/>
+    </Window.Background>
+
+    <Grid x:Name="gdhome">
+        <Grid x:Name="gdmain" Margin="0,0,-1,-644">
+            <Grid x:Name="gdlog" HorizontalAlignment="Right" Height="69" Margin="0,9,375,0" VerticalAlignment="Top" Width="523" Background="#FF001B3E">
+                <Label x:Name="lbluser" Content="Username*" HorizontalAlignment="Left" Height="23" Margin="6,9,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtuser" HorizontalAlignment="Left" Height="24" Margin="5,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtuser_TextChanged"/>
+                <Label x:Name="lblpword" Content="Password*" HorizontalAlignment="Left" Height="23" Margin="222,9,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <PasswordBox x:Name="txtpword" HorizontalAlignment="Left" Height="24" Margin="222,9,0,0" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" GotFocus="pword_on" LostFocus="pword_off"/>
+                <Button x:Name="btnlogin" Content="Login -&gt;&gt;" HorizontalAlignment="Left" Height="26" Margin="431,8,0,0" VerticalAlignment="Top" Width="84" Click="btnlogin_Click" Foreground="White">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"  />
+                        </Style>
+
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+            					CornerRadius="12"
+            					Background="#FF701939">
+                                <ContentPresenter VerticalAlignment="Center"
+            						HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnsign" Content="Don't have an account? Signup..." HorizontalAlignment="Left" Height="25" Margin="9,38,0,0" VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontStyle="Italic" Click="btnsign_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"  />
+                        </Style>
+
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+            					CornerRadius="12"
+            					Background="#FF1E1E1E">
+                                <ContentPresenter VerticalAlignment="Center"
+            						HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnrec" Content="Forgot Password?" HorizontalAlignment="Left" Height="25" Margin="224,38,0,0" VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontStyle="Italic" Click="btnrec_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"  />
+                        </Style>
+
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+            					CornerRadius="12"
+            					Background="#FF1E1E1E">
+                                <ContentPresenter VerticalAlignment="Center"
+            						HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <TextBlock x:Name="txtabt" HorizontalAlignment="Right" Height="326" Margin="0,294,390,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="828" Foreground="White" FontWeight="Bold" FontSize="18.667">
+                <TextBlock.Background>
+                    <ImageBrush ImageSource="pics/s ms yq.png"/>
+                </TextBlock.Background><Run Text=""/><LineBreak/><Run/><LineBreak/><Run Text="School Management System"/><LineBreak/><Run Text=" is a Virtual Assistant system that h"/><Run Foreground="#FF170606" Text="elps"/><Run Text=" "/><LineBreak/><Run Text="school with their records of staff,"/><LineBreak/><Run Text=" students and transactions. "/><LineBreak/><Run Text="It has unique features that can "/><Run Foreground="#FF170606" Text="help"/><LineBreak/><Run Text=" any educational institution"/><LineBreak/><Run Text=" at any level."/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Designed by Younique Te"/><Run Foreground="#FF170606" Text="chnology"/><Run Foreground="Black" Text=" © "/><Run Foreground="#FF170606" Text="2022"/></TextBlock>
+            <Button x:Name="btnlogad" Content="Login as Admin (Demo Use)" HorizontalAlignment="Right" Height="24" Margin="0,71,113,0" VerticalAlignment="Top" Width="159" Click="btnlogad_Click"/>
+            <Grid x:Name="gdmenu" Height="715" Margin="4,620,0,0" VerticalAlignment="Top" Width="1254" Background="#FF001A39">
+                <Rectangle Fill="#FF701939" Height="111" Margin="1,0,2,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblerror" Content="Network Error, Please try again..." HorizontalAlignment="Left" Height="97" Margin="194,323,0,0" VerticalAlignment="Top" Width="1006" FontWeight="Bold" FontSize="64"/>
+                <StackPanel Width="156" Background="#FF701939" Margin="0,-40,0,-126" HorizontalAlignment="Left">
+                    <Image x:Name="picprof" Height="111" Margin="0,42,0,0"  Source="pics/profile.jpg" Stretch="Fill">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="63" RadiusY="55" Center="75.5,55"/>
+                        </Image.Clip>
+                    </Image>
+                    <ListBox x:Name="lstmenu" Height="230" Background="{x:Null}" SelectionChanged="lstmenu_SelectionChanged" Foreground="White" BorderBrush="{x:Null}">
+                        <ListBoxItem Content="Profile" Height="38" FontWeight="Bold"/>
+                        <ListBoxItem Content="Students" Height="38" FontWeight="Bold"/>
+                        <ListBoxItem Content="Staff" Height="38" FontWeight="Bold"/>
+                        <ListBoxItem Content="Transactions" Height="38" FontWeight="Bold"/>
+                        <ListBoxItem Content="Tools" Height="38" FontWeight="Bold"/>
+                        <ListBoxItem Content="Logout" FontWeight="Bold" Height="35"/>
+                    </ListBox>
+                    <Button x:Name="btnad" Content="Admin" HorizontalAlignment="Left" Height="31" Margin="-1,0,0,0" Width="156" FontWeight="Bold" Click="btnad_Click"/>
+                </StackPanel>
+                <Label x:Name="lblsearch" Content="Search                                                                                                         🔍" HorizontalAlignment="Left" Height="29" Margin="302,64,0,0" VerticalAlignment="Top" Width="412" Background="White" FontWeight="Bold" Foreground="#FF001A39" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="txtsearch" HorizontalAlignment="Left" Height="31" Margin="302,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="411" Background="{x:Null}" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="#FF701939" BorderBrush="{x:Null}" TextChanged="txtsearch_TextChanged" ToolTip="Search for anything here..."/>
+                <TabControl x:Name="tabmain" HorizontalAlignment="Left" Height="567" Margin="171,129,0,0" VerticalAlignment="Top" Width="1061" Background="{x:Null}" SelectionChanged="tab_dash">
+                    <TabItem Header="Search" Background="#FF701939" Foreground="Black">
+                        <Grid>
+                            <Button x:Name="btnsmod" Content="Modify Record" HorizontalAlignment="Right" Height="26" Margin="0,9,20,0" VerticalAlignment="Top" Width="166" Foreground="White">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Cursor" Value="Hand"  />
+                                    </Style>
+
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <DataGrid x:Name="dtgres" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="482" Width="1026"/>
+                            <RadioButton x:Name="rdostud" Content="Students" HorizontalAlignment="Left" Margin="434,15,0,0" VerticalAlignment="Top" Foreground="White"/>
+                            <RadioButton x:Name="rdostaff" Content="Staff" HorizontalAlignment="Left" Margin="509,15,0,0" VerticalAlignment="Top" Foreground="White"/>
+                            <RadioButton x:Name="rdotrans" Content="Transactions" HorizontalAlignment="Left" Margin="560,15,0,0" VerticalAlignment="Top" Foreground="White"/>
+                            <Button x:Name="btnsprint" Content="Print Record" HorizontalAlignment="Right" Height="26" Margin="0,9,193,0" VerticalAlignment="Top" Width="166" Foreground="White">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Cursor" Value="Hand"  />
+                                    </Style>
+
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Profile" HorizontalAlignment="Right" Width="50" Foreground="Black" Background="#FF701939" Margin="0,-2,-1,0">
+                        <Grid>
+                            <Grid x:Name="gdsign_Copy" HorizontalAlignment="Right" Height="235" Margin="0,10,401,0" VerticalAlignment="Top" Width="643">
+                                <Label x:Name="lblpop" Content="Old Password*" HorizontalAlignment="Left" Height="23" Margin="6,9,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtpop" HorizontalAlignment="Left" Height="24" Margin="5,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                <Label x:Name="lblpnp" Content="New Password*" HorizontalAlignment="Left" Height="23" Margin="221,8,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtpnp" HorizontalAlignment="Left" Height="24" Margin="221,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregpw_TextChanged"/>
+                                <Button x:Name="btnpupdate" Content="Update Profile" HorizontalAlignment="Left" Height="22" Margin="9,204,0,0" VerticalAlignment="Top" Width="415" Click="btnsignup_Click" Foreground="White">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Label x:Name="lblpfname" Content="Full Name*" HorizontalAlignment="Left" Height="23" Margin="7,74,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtpfname" HorizontalAlignment="Left" Height="24" Margin="7,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregfname_TextChanged"/>
+                                <Label x:Name="lblpph" Content="Phone No.*" HorizontalAlignment="Left" Height="23" Margin="7,109,0,0" VerticalAlignment="Top" Width="199" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtpph" HorizontalAlignment="Left" Height="24" Margin="6,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregph_TextChanged"/>
+                                <Label x:Name="lblpmail" Content="Email: example@gmail.com" HorizontalAlignment="Left" Height="25" Margin="224,108,0,0" VerticalAlignment="Top" Width="200" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtppmail" HorizontalAlignment="Left" Height="26" Margin="223,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregmail_TextChanged"/>
+                                <Label x:Name="lblpaddr" Content="Address*" HorizontalAlignment="Left" Height="57" Margin="8,138,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtpaddr" HorizontalAlignment="Left" Height="58" Margin="8,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" AcceptsReturn="True" TextChanged="txtregaddr_TextChanged"/>
+                                <Image x:Name="picp" Margin="432,8,7,41"  Source="pics/profile.jpg" Stretch="Fill"/>
+                                <Button x:Name="btnpcam" Content="Cam" HorizontalAlignment="Left" Margin="432,204,0,0" Width="64" Click="btnpcam_Click" Foreground="White" Height="23" VerticalAlignment="Top">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button x:Name="btnpfile" Content="Pic from file" HorizontalAlignment="Left" Height="23" Margin="503,203,0,0" VerticalAlignment="Top" Width="131" Foreground="White" Click="btnpfile_Click">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button x:Name="btnppword" Content="Update Password" HorizontalAlignment="Left" Height="22" Margin="7,41,0,0" VerticalAlignment="Top" Width="415" Click="btnsignup_Click" Foreground="White">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                            <Menu x:Name="menpcam" HorizontalAlignment="Left" Height="55" Margin="445,243,0,0" VerticalAlignment="Top" Width="85" MouseLeave="hide_menpcam">
+                                <MenuItem Header="Start Cam" Width="84" Click="MenuItem_Click"/>
+                                <MenuItem Header="Capture" Width="85" Click="MenuItem_Click_1"/>
+                                <MenuItem Header="Settings" Width="84" Click="MenuItem_Click_3"/>
+                            </Menu>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Students" HorizontalAlignment="Right" Width="62" Background="#FF701939" Foreground="Black">
+                        <Grid>
+                            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="352" Margin="9,180,0,0" VerticalAlignment="Top" Width="1032"/>
+                            <Grid x:Name="gdsign_Copy1" HorizontalAlignment="Right" Height="168" Margin="0,9,16,0" VerticalAlignment="Top" Width="1026">
+                                <Label x:Name="lblregus1" Content="First Name*" HorizontalAlignment="Left" Height="24" Margin="6,10,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtstfn" HorizontalAlignment="Left" Height="24" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                <Button x:Name="btnsupdate" Content="Save / Update" HorizontalAlignment="Left" Height="24" Margin="284,137,0,0" VerticalAlignment="Top" Width="141" Click="btnsignup_Click" Foreground="White">
+
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Label x:Name="lblregaddr1" Content="Address*" HorizontalAlignment="Left" Height="55" Margin="282,75,0,0" VerticalAlignment="Top" Width="261" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtregaddr1" HorizontalAlignment="Left" Height="56" Margin="282,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Background="{x:Null}" AcceptsReturn="True" TextChanged="txtregaddr_TextChanged"/>
+                                <Image x:Name="picstud" Margin="828,2,21,42"  Source="pics/profile.jpg" Stretch="Fill"/>
+                                <Button x:Name="btnscam" Content="Cam" HorizontalAlignment="Left" Height="23" Margin="826,140,0,0" VerticalAlignment="Top" Width="60" Click="btnscam_Click" Foreground="White">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button x:Name="btnsfile" Content="Pic from file" HorizontalAlignment="Left" Height="23" Margin="895,140,0,0" VerticalAlignment="Top" Width="110" Foreground="White" Click="btnsfile_Click">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Label x:Name="lblregus1_Copy" Content="Middle Name (If any...)*" HorizontalAlignment="Left" Height="24" Margin="278,10,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtsfmn" HorizontalAlignment="Left" Height="24" Margin="277,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                <Label x:Name="lblregus1_Copy1" Content="Last Name*" HorizontalAlignment="Left" Height="24" Margin="552,10,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtstln" HorizontalAlignment="Left" Height="24" Margin="552,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                <Label x:Name="lblregus1_Copy5" Content="Email: example@gmail.com" HorizontalAlignment="Left" Height="24" Margin="10,105,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                <TextBox x:Name="txtregus1_Copy5" HorizontalAlignment="Left" Height="24" Margin="9,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                <Button x:Name="btnsupdate_Copy" Content="Add New Student" HorizontalAlignment="Left" Height="24" Margin="10,136,0,0" VerticalAlignment="Top" Width="263" Click="btnsignup_Click" Foreground="White">
+
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border
+                                				CornerRadius="12"
+                                				Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                					HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button x:Name="btnsupdate_Copy1" Content="Delete Student Record" HorizontalAlignment="Left" Height="24" Margin="430,137,0,0" VerticalAlignment="Top" Width="171" Click="btnsignup_Click" Foreground="White">
+
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border
+                                				CornerRadius="12"
+                                				Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                					HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button x:Name="btnsupdate_Copy2" Content="Register Student for a Class / Session" HorizontalAlignment="Left" Height="24" Margin="607,137,0,0" VerticalAlignment="Top" Width="207" Click="btnsignup_Click" Foreground="White">
+
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Hand"  />
+                                        </Style>
+
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border
+                                				CornerRadius="12"
+                                				Background="#FF701939">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                					HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Label x:Name="label3" Content="Select Session" HorizontalAlignment="Left" Height="24" Margin="556,72,0,0" VerticalAlignment="Top" Width="262" Foreground="White"/>
+                                <ComboBox x:Name="cbostudsess" HorizontalAlignment="Left" Height="24" Margin="555,101,0,0" VerticalAlignment="Top" Width="263"/>
+                            </Grid>
+                            <Label x:Name="lblregus1_Copy2" Content="Guardian's Name*" HorizontalAlignment="Left" Height="24" Margin="22,53,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                            <TextBox x:Name="txtregus1_Copy2" HorizontalAlignment="Left" Height="24" Margin="21,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                            <Label x:Name="lblregus1_Copy3" Content="Phone No.*" HorizontalAlignment="Left" Height="24" Margin="294,53,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                            <TextBox x:Name="txtregus1_Copy3" HorizontalAlignment="Left" Height="24" Margin="293,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                            <Label x:Name="lblregus1_Copy4" Content="Alternate Phone No.*" HorizontalAlignment="Left" Height="24" Margin="568,53,0,0" VerticalAlignment="Top" Width="264" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                            <TextBox x:Name="txtregus1_Copy4" HorizontalAlignment="Left" Height="24" Margin="568,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                            <ComboBox x:Name="cbostudgend" HorizontalAlignment="Left" Height="23" Margin="22,85,0,0" VerticalAlignment="Top" Width="265" SelectedIndex="0" FontWeight="Bold" FontSize="13.333">
+                                <ComboBoxItem Content="Select Gender"/>
+                                <ComboBoxItem Content="Male"/>
+                                <ComboBoxItem Content="Female"/>
+                            </ComboBox>
+                            <Menu x:Name="menscam" HorizontalAlignment="Left" Height="56" Margin="842,175,0,0" VerticalAlignment="Top" Width="85" MouseLeave="hide_menpcam" BorderBrush="Black">
+                                <MenuItem Header="Start Cam" Width="84" Click="MenuItem_Click_4"/>
+                                <MenuItem Header="Capture" Width="85" Click="MenuItem_Click_5"/>
+                                <MenuItem Header="Settings" Width="84" Click="MenuItem_Click_6"/>
+                            </Menu>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Staff" Background="#FF701939" Foreground="Black"/>
+                    <TabItem Header="Transactions" Background="#FF701939" Foreground="Black">
+                        <Grid>
+                            <DataGrid x:Name="dataGrid2" HorizontalAlignment="Left" Height="334" Margin="10,197,0,0" VerticalAlignment="Top" Width="1036"/>
+                            <ComboBox x:Name="cbotrantpe" HorizontalAlignment="Left" Height="26" Margin="387,9,0,0" VerticalAlignment="Top" Width="171" SelectedIndex="0" FontWeight="Bold" FontSize="13.333" SelectionChanged="cbotrantpe_SelectionChanged">
+                                <ComboBoxItem Content="Select transaction type"/>
+                                <ComboBoxItem Content="Student"/>
+                                <ComboBoxItem Content="Staff"/>
+                                <ComboBoxItem Content="Expenses"/>
+                                <ComboBoxItem Content="Fund School Account"/>
+                            </ComboBox>
+                            <Label x:Name="lblthead" Content="Transaction Heading" HorizontalAlignment="Left" Height="28" Margin="21,10,0,0" VerticalAlignment="Top" Width="316" Foreground="#FFFBFBFB"/>
+                            <DataGrid x:Name="dataGrid3" HorizontalAlignment="Left" Height="115" Margin="15,71,0,0" VerticalAlignment="Top" Width="365"/>
+                            <TextBox x:Name="txttransch" HorizontalAlignment="Left" Height="24" Margin="17,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="362" Text="Search                                                                                         🔍" GotFocus="ts_clear" LostFocus="ts_ls"/>
+                            <Label x:Name="label" Content="Select Session:" HorizontalAlignment="Left" Height="26" Margin="562,10,0,0" VerticalAlignment="Top" Width="91" Foreground="White" FontWeight="Bold" FontStyle="Italic"/>
+                            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="22" Margin="660,13,0,0" VerticalAlignment="Top" Width="382"/>
+                            <Label x:Name="label_Copy" Content="Select Payment Below:" HorizontalAlignment="Left" Height="26" Margin="390,42,0,0" VerticalAlignment="Top" Width="652" Foreground="White" FontWeight="Bold" FontStyle="Italic" HorizontalContentAlignment="Center"/>
+                            <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Height="22" Margin="388,72,0,0" VerticalAlignment="Top" Width="654"/>
+                            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="458,103,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="137" FontWeight="Bold" IsReadOnly="True"/>
+                            <Label x:Name="label1" Content="Cost:" HorizontalAlignment="Left" Height="26" Margin="390,101,0,0" VerticalAlignment="Top" Width="49" Foreground="#FF686868" FontWeight="Bold" Background="{x:Null}"/>
+                            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="22" Margin="699,104,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="119" FontWeight="Bold"/>
+                            <Label x:Name="label1_Copy" Content="Amount Paid:" HorizontalAlignment="Left" Height="26" Margin="605,101,0,0" VerticalAlignment="Top" Width="82" Foreground="White"/>
+                            <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="22" Margin="497,132,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="151" FontWeight="Bold"/>
+                            <Label x:Name="label1_Copy1" Content="Discount (If any...)" HorizontalAlignment="Left" Height="26" Margin="389,130,0,0" VerticalAlignment="Top" Width="113" Foreground="White"/>
+                            <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="22" Margin="506,161,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="154" FontWeight="Bold" IsReadOnly="True"/>
+                            <Label x:Name="label1_Copy2" Content="Total Amount Paid:" HorizontalAlignment="Left" Height="26" Margin="394,160,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF686868" FontWeight="Bold" Background="{x:Null}"/>
+                            <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="22" Margin="738,162,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="154" FontWeight="Bold" IsReadOnly="True"/>
+                            <Label x:Name="label1_Copy3" Content="Balance:" HorizontalAlignment="Left" Height="26" Margin="673,160,0,0" VerticalAlignment="Top" Width="59" Foreground="#FF686868" FontWeight="Bold" Background="{x:Null}"/>
+                            <Label x:Name="label1_Copy4" Content="Date of Transaction:" HorizontalAlignment="Left" Height="26" Margin="654,130,0,0" VerticalAlignment="Top" Width="119" Foreground="White"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="774,131,0,0" VerticalAlignment="Top" Width="265"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Tools" HorizontalAlignment="Left" Width="43" Background="#FF701939" Foreground="Black">
+                        <Grid>
+                            <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="490" Margin="32,19,0,0" VerticalAlignment="Top" Width="986" Background="{x:Null}">
+                                <TabItem Header="Sessions">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="272" Margin="11,180,0,0" VerticalAlignment="Top" Width="356"/>
+                                        <Label x:Name="label2" Content="Session*" HorizontalAlignment="Left" Height="25" Margin="13,8,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtsess" HorizontalAlignment="Left" Height="22" Margin="76,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
+                                        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="79" Margin="76,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
+                                        <Label x:Name="label2_Copy" Content="Note*" HorizontalAlignment="Left" Height="26" Margin="13,44,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <Button x:Name="btnsupdate_Copy3" Content="Add Session" HorizontalAlignment="Left" Height="24" Margin="6,136,0,0" VerticalAlignment="Top" Width="70" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy4" Content="Update Session" HorizontalAlignment="Left" Height="24" Margin="81,135,0,0" VerticalAlignment="Top" Width="286" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Classes">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid1_Copy" HorizontalAlignment="Left" Height="272" Margin="11,180,0,0" VerticalAlignment="Top" Width="356"/>
+                                        <Label x:Name="label2_Copy1" Content="Class*" HorizontalAlignment="Left" Height="25" Margin="13,8,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtsess_Copy" HorizontalAlignment="Left" Height="22" Margin="76,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
+                                        <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="79" Margin="76,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
+                                        <Label x:Name="label2_Copy2" Content="Note*" HorizontalAlignment="Left" Height="26" Margin="13,44,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <Button x:Name="btnsupdate_Copy5" Content="Add Class" HorizontalAlignment="Left" Height="24" Margin="6,136,0,0" VerticalAlignment="Top" Width="70" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy6" Content="Update Class" HorizontalAlignment="Left" Height="24" Margin="81,135,0,0" VerticalAlignment="Top" Width="139" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy17" Content="Delete Class" HorizontalAlignment="Left" Height="24" Margin="223,135,0,0" VerticalAlignment="Top" Width="144" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Subjects">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid1_Copy1" HorizontalAlignment="Left" Height="272" Margin="11,180,0,0" VerticalAlignment="Top" Width="356"/>
+                                        <Label x:Name="label2_Copy3" Content="Subject*" HorizontalAlignment="Left" Height="25" Margin="13,8,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtsess_Copy1" HorizontalAlignment="Left" Height="22" Margin="76,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="295"/>
+                                        <TextBox x:Name="textBox1_Copy1" HorizontalAlignment="Left" Height="79" Margin="76,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
+                                        <Label x:Name="label2_Copy4" Content="Note*" HorizontalAlignment="Left" Height="26" Margin="13,44,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <Button x:Name="btnsupdate_Copy7" Content="Add Subject" HorizontalAlignment="Left" Height="24" Margin="6,136,0,0" VerticalAlignment="Top" Width="70" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy8" Content="Update Subject" HorizontalAlignment="Left" Height="24" Margin="81,135,0,0" VerticalAlignment="Top" Width="143" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy16" Content="Delete Subject" HorizontalAlignment="Left" Height="24" Margin="232,135,0,0" VerticalAlignment="Top" Width="134" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Results">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid4" HorizontalAlignment="Left" Height="277" Margin="16,168,0,0" VerticalAlignment="Top" Width="360"/>
+                                        <Label x:Name="label2_Copy5" Content="Student's Name" HorizontalAlignment="Left" Height="25" Margin="9,41,0,0" VerticalAlignment="Top" Width="98" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtsess_Copy2" HorizontalAlignment="Left" Height="22" Margin="117,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352"/>
+                                        <TextBox x:Name="textBox1_Copy2" HorizontalAlignment="Left" Height="22" Margin="81,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Text="0"/>
+                                        <Label x:Name="label2_Copy6" Content="1st Test" HorizontalAlignment="Left" Height="26" Margin="20,70,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <Button x:Name="btnsupdate_Copy9" Content="Add Score" HorizontalAlignment="Left" Height="24" Margin="18,107,0,0" VerticalAlignment="Top" Width="70" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy10" Content="Update Score" HorizontalAlignment="Left" Height="24" Margin="93,106,0,0" VerticalAlignment="Top" Width="136" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Label x:Name="label5" Content="Select Class" HorizontalAlignment="Left" Height="29" Margin="12,5,0,0" VerticalAlignment="Top" Width="73" Foreground="White"/>
+                                        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Height="26" Margin="92,6,0,0" VerticalAlignment="Top" Width="281"/>
+                                        <Label x:Name="label5_Copy" Content="Select Session" HorizontalAlignment="Left" Height="29" Margin="380,5,0,0" VerticalAlignment="Top" Width="87" Foreground="White"/>
+                                        <ComboBox x:Name="comboBox1_Copy" HorizontalAlignment="Left" Height="26" Margin="473,6,0,0" VerticalAlignment="Top" Width="281"/>
+                                        <Label x:Name="label5_Copy1" Content="Select Session" HorizontalAlignment="Left" Height="29" Margin="478,41,0,0" VerticalAlignment="Top" Width="87" Foreground="White"/>
+                                        <ComboBox x:Name="comboBox1_Copy1" HorizontalAlignment="Left" Height="26" Margin="571,42,0,0" VerticalAlignment="Top" Width="281"/>
+                                        <Label x:Name="label6" Content="Student's Result - Currently Modified for (Session)" HorizontalAlignment="Left" Height="26" Margin="19,138,0,0" VerticalAlignment="Top" Width="356" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <DataGrid x:Name="dataGrid4_Copy" HorizontalAlignment="Left" Height="277" Margin="384,168,0,0" VerticalAlignment="Top" Width="579"/>
+                                        <Label x:Name="label6_Copy" Content="All Results (Session - Class)" HorizontalAlignment="Left" Height="26" Margin="387,138,0,0" VerticalAlignment="Top" Width="566" Foreground="White" HorizontalContentAlignment="Center"/>
+                                        <TextBox x:Name="txtft" HorizontalAlignment="Left" Height="22" Margin="81,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Text="0" TextChanged="tot_calc"/>
+                                        <Label x:Name="label2_Copy7" Content="1st Test" HorizontalAlignment="Left" Height="26" Margin="20,70,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtst" HorizontalAlignment="Left" Height="22" Margin="176,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" Text="0" TextChanged="tot_calc"/>
+                                        <Label x:Name="label2_Copy8" Content="2nd Test" HorizontalAlignment="Left" Height="26" Margin="115,71,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txtex" HorizontalAlignment="Left" Height="22" Margin="263,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" Text="0" TextChanged="tot_calc"/>
+                                        <Label x:Name="label2_Copy9" Content="Exam" HorizontalAlignment="Left" Height="26" Margin="211,71,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFFBFBFB"/>
+                                        <Label x:Name="label2_Copy10" Content="Total" HorizontalAlignment="Left" Height="26" Margin="311,72,0,0" VerticalAlignment="Top" Width="47" Foreground="#FFFBFBFB"/>
+                                        <TextBox x:Name="txttot" HorizontalAlignment="Left" Height="22" Margin="363,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="0" IsReadOnly="True"/>
+                                        <Button x:Name="btnsupdate_Copy11" Content="Delete Score" HorizontalAlignment="Left" Height="24" Margin="236,107,0,0" VerticalAlignment="Top" Width="136" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Inbox" Background="#FF701939">
+                        <Grid>
+                            <TabControl x:Name="tabinbox" HorizontalAlignment="Left" Height="477" Margin="29,23,0,0" VerticalAlignment="Top" Width="944" Background="{x:Null}">
+                                <TabItem Header="Messages">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid5" HorizontalAlignment="Left" Height="236" Margin="14,199,0,0" VerticalAlignment="Top" Width="906"/>
+                                        <Image x:Name="picmsg" Margin="774,4,28,322"  Source="pics/profpic.png" Stretch="Fill">
+                                            <Image.Clip>
+                                                <EllipseGeometry RadiusX="65" RadiusY="58" Center="68,62"/>
+                                            </Image.Clip>
+                                        </Image>
+                                        <Label x:Name="label7" Content="Favour Oghenegawhanye" HorizontalAlignment="Left" Height="26" Margin="755,132,0,0" VerticalAlignment="Top" Width="179" Foreground="White" HorizontalContentAlignment="Center" FontSize="10.667" Background="#FF2D2D30"/>
+                                        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="139" Margin="19,9,0,0" TextWrapping="Wrap" Text="Welcome to Younique Technology School Management system... blah blah blah&#xA;You can always contact me at anytime..." VerticalAlignment="Top" Width="729" AcceptsReturn="True" FontSize="18.667" TextAlignment="Justify" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                                        <Label x:Name="label7_Copy" Content="Head: Customer Representative" HorizontalAlignment="Left" Height="26" Margin="755,160,0,0" VerticalAlignment="Top" Width="179" Foreground="White" HorizontalContentAlignment="Center" FontSize="10.667" FontWeight="Bold" Background="#FF701939"/>
+                                        <Label x:Name="label8" Content="Sent: 20/08/2022 9:00:20 PM" HorizontalAlignment="Left" Height="30" Margin="560,150,0,0" VerticalAlignment="Top" Width="184" Foreground="White"/>
+                                        <Button x:Name="btnsupdate_Copy12" Content="Write New" HorizontalAlignment="Left" Height="30" Margin="25,157,0,0" VerticalAlignment="Top" Width="70" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy13" Content="Reply" HorizontalAlignment="Left" Height="32" Margin="106,156,0,0" VerticalAlignment="Top" Width="83" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy14" Content="Mark as Read" HorizontalAlignment="Left" Height="30" Margin="196,157,0,0" VerticalAlignment="Top" Width="115" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy15" Content="Delete Message" HorizontalAlignment="Left" Height="32" Margin="324,156,0,0" VerticalAlignment="Top" Width="100" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                        				CornerRadius="12"
+                                        				Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                        					HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Notifications">
+                                    <Grid>
+                                        <DataGrid x:Name="dataGrid5_Copy" HorizontalAlignment="Left" Height="236" Margin="14,199,0,0" VerticalAlignment="Top" Width="906"/>
+                                        <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Left" Height="139" Margin="19,9,0,0" TextWrapping="Wrap" Text="It has come to our notice that your subscription is four (4) days over due - Younique Technology School Management system.&#xA;Please pay within five (5) working days else your account would be suspended. Have a nice day!" VerticalAlignment="Top" Width="909" AcceptsReturn="True" FontSize="18.667" TextAlignment="Justify" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                                        <Label x:Name="label8_Copy" Content="Sent: 20/08/2022 9:00:20 PM" HorizontalAlignment="Left" Height="30" Margin="743,150,0,0" VerticalAlignment="Top" Width="184" Foreground="White"/>
+                                        <Button x:Name="btnsupdate_Copy20" Content="Mark as Read" HorizontalAlignment="Left" Height="30" Margin="29,157,0,0" VerticalAlignment="Top" Width="282" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button x:Name="btnsupdate_Copy21" Content="Delete Notification" HorizontalAlignment="Left" Height="32" Margin="324,156,0,0" VerticalAlignment="Top" Width="370" Click="btnsignup_Click" Foreground="White">
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Cursor" Value="Hand"  />
+                                                </Style>
+
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                    					CornerRadius="12"
+                                    					Background="#FF701939">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                    						HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Feedback">
+                                    <Grid>
+                                        <WebBrowser HorizontalAlignment="Left" Height="427" Margin="11,12,0,0" VerticalAlignment="Top" Width="906" Source="{x:Null}"/>
+                                        <Label x:Name="label9" Content="Unavailable for now..." HorizontalAlignment="Left" Height="54" Margin="300,160,0,0" VerticalAlignment="Top" Width="367" Foreground="#FF001A39" FontWeight="Bold" FontSize="26.667"/>
+
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="tabadmin" Header="Admin">
+                        <Grid>
+                            <TabControl x:Name="tabControl1" HorizontalAlignment="Left" Height="499" Margin="18,19,0,0" VerticalAlignment="Top" Width="996" Background="{x:Null}">
+                                <TabItem Header="Subscription">
+                                    <Grid>
+                                        <RadioButton x:Name="sub1" Content="Beginners Pack" HorizontalAlignment="Left" Height="23" Margin="214,14,0,0" VerticalAlignment="Top" Width="158" FontSize="18.667" Foreground="White" FontWeight="Bold" Checked="sub1_Checked"/>
+                                        <RadioButton x:Name="sub2" Content="Standard Pack" HorizontalAlignment="Left" Height="23" Margin="377,14,0,0" VerticalAlignment="Top" Width="145" FontSize="18.667" Foreground="White" FontWeight="Bold" Checked="sub2_Checked"/>
+                                        <Label x:Name="label10" Content="Subscription Type" HorizontalAlignment="Left" Height="35" Margin="18,7,0,0" VerticalAlignment="Top" Width="163" FontSize="18.667" Foreground="White"/>
+                                        <RadioButton x:Name="sub3" Content="Professional Pack" HorizontalAlignment="Left" Height="24" Margin="542,12,0,0" VerticalAlignment="Top" Width="186" FontSize="18.667" Foreground="White" FontWeight="Bold" Checked="sub3_Checked"/>
+                                        <RadioButton x:Name="sub4" Content="Premium Pack" HorizontalAlignment="Left" Height="22" Margin="728,12,0,0" VerticalAlignment="Top" Width="146" FontSize="18.667" Foreground="White" FontWeight="Bold" Checked="sub4_Checked"/>
+                                        <ComboBox x:Name="cbosub" HorizontalAlignment="Left" Height="45" Margin="219,54,0,0" VerticalAlignment="Top" Width="374" SelectedIndex="0" FontWeight="Bold" FontSize="24" SelectionChanged="cbosub_SelectionChanged">
+                                            <ComboBoxItem Content="Select Duration"/>
+                                            <ComboBoxItem Content="One month"/>
+                                            <ComboBoxItem Content="3 months save (5%)"/>
+                                            <ComboBoxItem Content="6 months save (8%)"/>
+                                            <ComboBoxItem Content="1 year save (10%)"/>
+                                            <ComboBoxItem Content="2 years save (15%)"/>
+                                            <ComboBoxItem Content="3 years save (20%)"/>
+                                        </ComboBox>
+                                        <TabControl x:Name="admintab" HorizontalAlignment="Left" Height="336" Margin="19,118,0,0" VerticalAlignment="Top" Width="942" FontSize="18.667" FontWeight="Bold" Background="{x:Null}">
+                                            <TabItem Header="Cash or Transfer">
+                                                <Grid>
+                                                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="264" Margin="11,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="899" FontSize="26.667"><Run Foreground="#FF686868" Text="Kuda Microfinance Bank"/><LineBreak/><Run Foreground="#FFEBEBEB" Text="xxxxxxxxxx"/><LineBreak/><Run Foreground="#FFFFCC00" Text="Younique Technology"/><LineBreak/><Run Foreground="#FF686868"/><LineBreak/><Run Foreground="#FF686868" Text="Union Bank"/><LineBreak/><Run Foreground="White" Text="0069380924"/><LineBreak/><Run Foreground="#FFFFCC00" Text="Michael Oghenegawhanye Bezi"/></TextBlock>
+                                                </Grid>
+                                            </TabItem>
+                                            <TabItem Header="Online Payment">
+                                                <Grid Background="#FFE5E5E5">
+                                                    <WebBrowser HorizontalAlignment="Left" Height="283" Margin="6,8,0,0" VerticalAlignment="Top" Width="921" Source="{x:Null}"/>
+                                                    <Label x:Name="label9_Copy" Content="Unavailable for now..." HorizontalAlignment="Left" Height="45" Margin="301,106,0,0" VerticalAlignment="Top" Width="371" Foreground="#FF001A39" FontWeight="Bold" FontSize="26.667"/>
+                                                </Grid>
+                                            </TabItem>
+                                        </TabControl>
+                                        <Label x:Name="lblsub" Content="Label" HorizontalAlignment="Left" Height="40" Margin="607,58,0,0" VerticalAlignment="Top" Width="374" Foreground="#FFF9F9F9" FontSize="18.667" FontWeight="Bold"/>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Staff">
+                                    <Grid>
+                                        <Grid Margin="0,0,-65,-68">
+                                            <Grid x:Name="gdsign_Copy2" HorizontalAlignment="Right" Height="235" Margin="0,10,401,0" VerticalAlignment="Top" Width="643">
+                                                <Label x:Name="lblstus" Content="Username*" HorizontalAlignment="Left" Height="23" Margin="6,9,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstus" HorizontalAlignment="Left" Height="24" Margin="5,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                                                <Label x:Name="lblstpword" Content="Password*" HorizontalAlignment="Left" Height="23" Margin="221,8,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstpword" HorizontalAlignment="Left" Height="24" Margin="221,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregpw_TextChanged"/>
+                                                <Button x:Name="btnstupdate" Content="Update Staff's Profile" HorizontalAlignment="Left" Height="22" Margin="9,204,0,0" VerticalAlignment="Top" Width="119" Click="btnsignup_Click" Foreground="White">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Label x:Name="lblstfname" Content="Full Name*" HorizontalAlignment="Left" Height="23" Margin="7,74,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstfname" HorizontalAlignment="Left" Height="24" Margin="7,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregfname_TextChanged"/>
+                                                <Label x:Name="lblstph" Content="Phone No.*" HorizontalAlignment="Left" Height="23" Margin="7,109,0,0" VerticalAlignment="Top" Width="199" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstph" HorizontalAlignment="Left" Height="24" Margin="6,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregph_TextChanged"/>
+                                                <Label x:Name="lblstmail" Content="Email: example@gmail.com" HorizontalAlignment="Left" Height="25" Margin="224,108,0,0" VerticalAlignment="Top" Width="200" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstmail" HorizontalAlignment="Left" Height="26" Margin="223,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregmail_TextChanged"/>
+                                                <Label x:Name="lblstaddr" Content="Address*" HorizontalAlignment="Left" Height="57" Margin="8,138,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                                                <TextBox x:Name="txtstaddr" HorizontalAlignment="Left" Height="58" Margin="8,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" AcceptsReturn="True" TextChanged="txtregaddr_TextChanged"/>
+                                                <Image x:Name="picstaff" Margin="432,8,7,41"  Source="pics/profile.jpg" Stretch="Fill"/>
+                                                <Button x:Name="btnstcam" Content="Cam" HorizontalAlignment="Left" Height="23" Margin="432,204,0,0" VerticalAlignment="Top" Width="64" Foreground="White" Click="btnstcam_Click">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Button x:Name="btnstfile" Content="Pic from file" HorizontalAlignment="Left" Height="23" Margin="503,204,0,0" VerticalAlignment="Top" Width="131" Foreground="White" Click="btnstfile_Click">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Button x:Name="btnstpword" Content="Update Password" HorizontalAlignment="Left" Height="22" Margin="7,41,0,0" VerticalAlignment="Top" Width="415" Foreground="White">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Button x:Name="btnstact" Content="Activate / Deactivate" HorizontalAlignment="Left" Height="22" Margin="132,203,0,0" VerticalAlignment="Top" Width="118" Foreground="White">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                                <Button x:Name="btnstmsg" Content="Send Message" HorizontalAlignment="Left" Height="22" Margin="254,204,0,0" VerticalAlignment="Top" Width="169" Foreground="#FFFDFDFD">
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Cursor" Value="Hand"  />
+                                                        </Style>
+
+                                                    </Button.Style>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border 
+                                    							CornerRadius="12"
+                                    							Background="#FF701939">
+                                                                <ContentPresenter VerticalAlignment="Center"
+                                    								HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
+                                            </Grid>
+                                            <DataGrid x:Name="dtgst" HorizontalAlignment="Left" Height="207" Margin="20,251,0,0" VerticalAlignment="Top" Width="1030"/>
+                                            <Menu x:Name="menstcam" HorizontalAlignment="Left" Height="55" Margin="445,240,0,0" VerticalAlignment="Top" Width="85" MouseLeave="hide_menpcam">
+                                                <MenuItem Header="Start Cam" Width="84" Click="MenuItem_Click_7"/>
+                                                <MenuItem Header="Capture" Width="85" Click="MenuItem_Click_8"/>
+                                                <MenuItem Header="Settings" Width="84" Click="MenuItem_Click_9"/>
+                                            </Menu>
+                                        </Grid>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <Grid x:Name="gdprofic" Margin="105,119,1109,374">
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/1_64x64.png"/>
+                    <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="32" Margin="0,35,0,0" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/clients.png"/>
+                    <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="32" Margin="1,75,0,0" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/Staff.png"/>
+                    <Image x:Name="image_Copy2" HorizontalAlignment="Left" Height="32" Margin="0,114,0,0" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/withdraw.png"/>
+                    <Image x:Name="image_Copy3" HorizontalAlignment="Left" Height="32" Margin="1,151,0,0" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/settings.png" RenderTransformOrigin="0.564,0.562"/>
+                    <Image x:Name="image_Copy4" HorizontalAlignment="Left" Height="32" Margin="1,190,0,0" VerticalAlignment="Top" Width="39" Stretch="Fill" Source="pics/logout.png"/>
+                </Grid>
+                <Image x:Name="picload2" HorizontalAlignment="Left" Height="28" Margin="717,65,0,0" VerticalAlignment="Top" Width="31" gif:ImageBehavior.AnimatedSource="pics/load.jpg"/>
+                <Label x:Name="lblp" Content="Welcome!" Height="40" Margin="302,8,246,0" VerticalAlignment="Top" Width="706" Background="{x:Null}" FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center" FontSize="26.667"/>
+                <Label x:Name="lblmsg" Content="Label" HorizontalAlignment="Left" Height="27" Margin="720,66,0,0" VerticalAlignment="Top" Width="285" Foreground="White" FontWeight="Bold" ScrollViewer.CanContentScroll="True"/>
+                <Grid x:Name="gdmsg" Margin="152,0,0,608" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="152">
+                    <Button x:Name="btnmsg" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="45" ToolTip="Messages" Click="btnmsg_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Cursor" Value="Hand"  />
+                            </Style>
+
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border 
+                					CornerRadius="12"
+                					Background="{x:Null}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                						HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Image x:Name="image1" Height="37" Width="46" Source="pics/inbox.png" ToolTip="Messages"/>
+                    </Button>
+                    <Button x:Name="btnotf" HorizontalAlignment="Left" Height="40" Margin="48,0,0,0" VerticalAlignment="Top" Width="45" ToolTip="Notifications" Click="btnotf_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Cursor" Value="Hand"  />
+                            </Style>
+
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border 
+                					CornerRadius="12"
+                					Background="{x:Null}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                						HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Image x:Name="image2" Height="37" Width="46" Source="pics/4_64x64.png" ToolTip="Notifications"/>
+                    </Button>
+                    <Button x:Name="btnfeed" HorizontalAlignment="Left" Height="40" Margin="99,0,0,0" VerticalAlignment="Top" Width="45" ToolTip="Feedback" Click="btnfeed_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Cursor" Value="Hand"  />
+                            </Style>
+
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border 
+                					CornerRadius="12"
+                					Background="{x:Null}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                						HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Image x:Name="image3" Height="37" Width="46" Source="pics/24.png" ToolTip="Feedback"/>
+                    </Button>
+                    <Label x:Name="label4" Content="1" HorizontalAlignment="Left" Height="26" Margin="24,23,0,0" VerticalAlignment="Top" Width="23" Background="#FF001A39" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Clip>
+                            <EllipseGeometry RadiusX="10" RadiusY="10" Center="11,12"/>
+                        </Label.Clip>
+                    </Label>
+                    <Label x:Name="label4_Copy" Content="1" HorizontalAlignment="Left" Height="26" Margin="74,23,0,0" VerticalAlignment="Top" Width="23" Background="#FF001A39" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Clip>
+                            <EllipseGeometry RadiusX="10" RadiusY="10" Center="11,12"/>
+                        </Label.Clip>
+                    </Label>
+                    <Label x:Name="label4_Copy1" Content="0" HorizontalAlignment="Left" Height="26" Margin="126,23,0,0" VerticalAlignment="Top" Width="23" Background="#FF001A39" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                        <Label.Clip>
+                            <EllipseGeometry RadiusX="10" RadiusY="10" Center="11,12"/>
+                        </Label.Clip>
+                    </Label>
+                </Grid>
+            </Grid>
+            <Button x:Name="btnadj" Content="Button" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="224" Margin="0,0,0,0" Click="btnadj_Click"/>
+            <Image x:Name="picload" HorizontalAlignment="Right" Height="46" Margin="0,13,112,0" VerticalAlignment="Top" Width="53" gif:ImageBehavior.AnimatedSource="pics/load.jpg"/>
+            <Grid x:Name="gdsign" HorizontalAlignment="Right" Height="232" Margin="0,15,467,0" VerticalAlignment="Top" Width="431" Background="#FF001B3E">
+                <Label x:Name="lblregus" Content="Username*" HorizontalAlignment="Left" Height="23" Margin="6,9,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregus" HorizontalAlignment="Left" Height="23" Margin="5,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregus_TextChanged"/>
+                <Label x:Name="lblregpw" Content="Password*" HorizontalAlignment="Left" Height="23" Margin="221,8,0,0" VerticalAlignment="Top" Width="202" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregpw" HorizontalAlignment="Left" Height="24" Margin="221,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregpw_TextChanged"/>
+                <Button x:Name="btnsignup" Content="Signup!" HorizontalAlignment="Left" Height="27" Margin="223,199,0,0" VerticalAlignment="Top" Width="201" Click="btnsignup_Click" Foreground="White">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"  />
+                        </Style>
+
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+                                CornerRadius="12"
+                                Background="#FF701939">
+                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="btnlog" Content="Already have an account? Login..." HorizontalAlignment="Left" Height="25" Margin="7,200,0,0" VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontWeight="Bold" FontStyle="Italic" Click="btnlog_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"  />
+                        </Style>
+
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border 
+                                CornerRadius="12"
+                                Background="#FF1E1E1E">
+                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Label x:Name="lblregfname" Content="Full Name*" HorizontalAlignment="Left" Height="23" Margin="7,41,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregfname" HorizontalAlignment="Left" Height="23" Margin="7,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregfname_TextChanged"/>
+                <Label x:Name="lblregph" Content="Phone No.*" HorizontalAlignment="Left" Height="23" Margin="7,76,0,0" VerticalAlignment="Top" Width="199" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregph" HorizontalAlignment="Left" Height="24" Margin="7,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregph_TextChanged"/>
+                <Label x:Name="lblregmail" Content="Email: example@gmail.com" HorizontalAlignment="Left" Height="25" Margin="224,75,0,0" VerticalAlignment="Top" Width="200" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregmail" HorizontalAlignment="Left" Height="26" Margin="223,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregmail_TextChanged"/>
+                <Label x:Name="lblregaddr" Content="Address*" HorizontalAlignment="Left" Height="57" Margin="8,105,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregaddr" HorizontalAlignment="Left" Height="57" Margin="8,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" AcceptsReturn="True" TextChanged="txtregaddr_TextChanged"/>
+                <Label x:Name="lblregschname" Content="School Name* (Optional.. for admin only)" HorizontalAlignment="Left" Height="23" Margin="8,169,0,0" VerticalAlignment="Top" Width="417" Foreground="#FF3E3E42" Background="White" FontSize="10.667" FontStyle="Italic"/>
+                <TextBox x:Name="txtregschname" HorizontalAlignment="Left" Height="23" Margin="8,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" Background="{x:Null}" VerticalContentAlignment="Center" TextChanged="txtregfname_TextChanged"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
